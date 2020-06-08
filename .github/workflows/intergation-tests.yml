@@ -15,3 +15,4 @@ jobs:
            repname: ${env:GITHUB_REPOSITORY};
           run: | 
            curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data '{"event_type": "K8sCreateSecret", "client_payload": {"action": "CreateSecret", "commit": "${{ github.sha }}", "branch": "${{ github.event.pull_request.base.ref }}", "PR_NUMBER": "${{ github.event.pull_request.number }}", "GITHUB_REPOSITORY":  "rgsubh/k8s-create-secret", "frombranch": "${{ github.event.pull_request.head.ref }}" }}'
+  
