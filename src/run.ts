@@ -34,8 +34,6 @@ function getExecutableExtension(): string {
 }
 
 async function createSecret() {
-    
-    return;
     const typeOfSecret = core.getInput('secret-type', { required: true });
     const secretName = core.getInput('secret-name', { required: true });
     const namespace = core.getInput('namespace');
@@ -141,6 +139,8 @@ function checkClusterContext() {
 }
 
 async function run() {
+    console.log("<><><><><><><><><><><><><><><><><><><><>")
+    return;
     checkClusterContext();
     await checkAndSetKubectlPath();
     await createSecret();
