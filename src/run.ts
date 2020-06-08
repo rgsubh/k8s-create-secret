@@ -139,7 +139,7 @@ function checkClusterContext() {
 }
 
 async function run() {
-    console.log("<><><><><><><><><><><><><><><><><><><><>");
+    console.log("<><><><><><><><><><><><><><><><><><><><>"); 
     return;
     checkClusterContext();
     await checkAndSetKubectlPath();
