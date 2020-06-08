@@ -1,0 +1,16 @@
+on: 
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+jobs: 
+    trigger-integration-tests:
+      name: Trigger Integration tests
+      runs-on: ubuntu-latest
+      steps:
+        - name: Trigger Test run
+          run: | 
+           curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data '{"event_type": "K8sCreateSecret", "client_payload": {"action": "CreateSecret", "commit": "${{ github.sha }}", "branch": "${{ github.ref }}" }}'
+           
