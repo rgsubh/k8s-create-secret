@@ -139,8 +139,6 @@ function checkClusterContext() {
 }
 
 async function run() {
-    console.log("<><><><><><><><><><><><><><><><><><><><>"); 
-    return;
     checkClusterContext();
     await checkAndSetKubectlPath();
     await createSecret();
