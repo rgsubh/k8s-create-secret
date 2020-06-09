@@ -14,7 +14,7 @@ jobs:
           env:
            repname: ${env:GITHUB_REPOSITORY};
           run: | 
-           response=$(curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data '{"event_type": "K8sCreateSecret", "client_payload": {"action": "CreateSecret", "commit": "${{ github.sha }}", "branch": "${{ github.event.pull_request.base.ref }}", "PR_NUMBER": "${{ github.event.pull_request.number }}", "GITHUB_REPOSITORY":  "${{ github.repository }}", "frombranch": "${{ github.event.pull_request.head.ref }}" }}')
+           response=$(curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKENL }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data '{"event_type": "K8sCreateSecret", "client_payload": {"action": "CreateSecret", "commit": "${{ github.sha }}", "branch": "${{ github.event.pull_request.base.ref }}", "PR_NUMBER": "${{ github.event.pull_request.number }}", "GITHUB_REPOSITORY":  "${{ github.repository }}", "frombranch": "${{ github.event.pull_request.head.ref }}" }}')
            if [ "$response" == "" ]; then 
             echo "Integration tests triggred sucessfully"; 
            else 
