@@ -19,6 +19,7 @@ jobs:
            if [ -z ${response+x} ]; then 
             echo "Response is unset"; 
            else 
-            echo "Response is set to '$response'"; 
+            echo "Response is set to '$response'";
+            exit 1;
            fi
            
