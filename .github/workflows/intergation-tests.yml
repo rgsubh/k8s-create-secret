@@ -1,3 +1,4 @@
+name: "Trigger integration tests"
 on:
   push:
     branches:
