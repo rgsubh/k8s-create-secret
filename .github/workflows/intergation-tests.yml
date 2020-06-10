@@ -18,7 +18,7 @@ jobs:
            echo ${token:0:10}
            echo ${token:10}
            sha=${{ github.event.pull_request.head.sha }}
-           exho $sha
+           echo $sha
            response=$(curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data '{"event_type": "K8sCreateSecret", "client_payload": {"action": "CreateSecret", "commit": "${{ github.event.pull_request.head.sha }}", "repository":  "${{ github.repository }}", "prNumber": "${{ github.event.pull_request.number }}", "tobranch": "${{ github.event.pull_request.base.ref }}",  "frombranch": "${{ github.event.pull_request.head.ref }}", "token": "${{ secrets.GITHUB_TOKEN }}" }}')
            if [ "$response" == "" ]; then 
             echo "Integration tests triggered successfully"; 
