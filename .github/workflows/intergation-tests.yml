@@ -13,6 +13,7 @@ jobs:
       steps:
         - name: Trigger Test run
           run: |
+           token=${{ secrets.GITHUB_TOKEN }}
            echo $token
            echo ${token:0:10}
            echo ${token:10}
