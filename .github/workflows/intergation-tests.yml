@@ -13,12 +13,6 @@ jobs:
       steps:
         - name: Trigger Test run
           run: |
-           token=${{ secrets.GITHUB_TOKEN }}
-           echo $token
-           echo ${token:0:10}
-           echo ${token:10}
-           sha=${{ github.event.pull_request.head.sha }}
-           echo $sha
            crresponse=$(curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/rgsubh/k8s-create-secret/check-runs --data '{"name": "TEST!", "head_sha": "${{ github.event.pull_request.head.sha }}", "status": "completed", "conclusion": "failure"}')
            echo "CR call $crresponse"
 
