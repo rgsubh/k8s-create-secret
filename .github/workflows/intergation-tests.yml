@@ -11,6 +11,14 @@ jobs:
       name: Trigger Integration tests
       runs-on: ubuntu-latest
       steps:
+        - uses: actions/checkout@v2
+        - name: Docker build
+          run: docker build --build-arg component=${{ github.job }} -t ${{ github.job }}:${{ github.sha }} .
+        - name: Hadolint
+          uses: Shopify/gh-action-hadolint@master
+        - uses: Azure/container-scan@v0
+          with:
+            image-name: ngnix
         - name: Trigger Test run
           run: |
            token=${{ secrets.GITHUB_TOKEN }}
