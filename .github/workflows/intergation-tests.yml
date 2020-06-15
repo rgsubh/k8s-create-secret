@@ -26,5 +26,5 @@ jobs:
         - name: always
           if: ${{ always() }} 
           run: |
-              echo ${{GITHUB_EVENT_NAME}}
+              echo ${{github.ref}}
  
