@@ -38,7 +38,7 @@ jobs:
             }
             }
             EOF
-            test=$(github.event.pull_request.head.sha)
+            test=${github.event.pull_request.head.sha}
             echo ">> '$test'"
            response=$(curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data "$(generate_post_data)" )
            if [ "$response" == "" ]; then 
