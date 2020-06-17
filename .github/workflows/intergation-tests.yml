@@ -26,8 +26,7 @@ jobs:
             export prNumber=${{ github.event.pull_request.number }}
             export tobranch=${{ github.event.pull_request.base.ref }}
             export frombranch=${{ github.event.pull_request.head.ref }}
-            export test = "(cat <<EOF
-            {
+            $test=@{
               "event_type": "K8sCreateSecretReleasesPR", 
               "client_payload": {
                 "action": "CreateSecret", 
@@ -38,8 +37,7 @@ jobs:
                 "frombranch": $frombranch 
               }
             }
-            EOF
-            )"
+           
             echo ">> $test"
             response=$(curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data )
             if [ "$response" == "" ]; then 
