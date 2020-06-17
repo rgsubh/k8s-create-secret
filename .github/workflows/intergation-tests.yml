@@ -27,8 +27,7 @@ jobs:
             tobranch=${{ github.event.pull_request.base.ref }}
             frombranch=${{ github.event.pull_request.head.ref }}
             echo ">> $sha"
-            data="{\"event_type\": \"K8sCreateSecretReleasesPR\", \"client_payload\": {\"action\": \"CreateSecret\", \"commit\": \"$sha\", \"repository\":  \"${{ github.repository }}\", \"prNumber\": \"${{ github.event.pull_request.number }}\", \"tobranch\": \"${{ github.event.pull_request.base.ref }}\",  \"frombranch\": \"${{ github.event.pull_request.head.ref }}\" }}"
-            response=$(curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data ${data})
+            response=$(curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data '{"event_type": "K8sCreateSecretReleasesPR", "client_payload": {"action": "CreateSecret", "commit": "${{github.event.pull_request.head.sha}}", "repository":  "${{ github.repository }}", "prNumber": "${{ github.event.pull_request.number }}", "tobranch": "${{ github.event.pull_request.base.ref }}",  "frombranch": "${{ github.event.pull_request.head.ref }}", "token": "${{ secrets.GITHUB_TOKEN }}" }}')
             if [ "$response" == "" ]; then 
               echo "Integration tests triggered successfully"; 
             else 
