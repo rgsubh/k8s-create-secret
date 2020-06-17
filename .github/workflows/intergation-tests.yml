@@ -21,8 +21,7 @@ jobs:
         - name: Trigger Test run
           if: github.event.pull_request.base.ref == 'releases/v1' || steps.extract_branch.outputs.branchname == 'releases/v1'
           run: |
-           generate_post_data()
-            cat <<EOF
+           generate_post_data(){cat <<EOF
             {
               "event_type": "K8sCreateSecretReleasesPR",
               "client_payload": {
@@ -35,7 +34,8 @@ jobs:
               }
             }
             EOF
-
+            }
+            
            response=$(curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data "$(generate_post_data)" )
            if [ "$response" == "" ]; then 
             echo "Integration tests triggered successfully"; 
