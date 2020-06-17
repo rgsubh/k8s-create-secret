@@ -31,7 +31,7 @@ jobs:
                 "prNumber": "${{ github.event.pull_request.number }}",
                 "tobranch": "${{ github.event.pull_request.base.ref }}",
                 "frombranch": "${{ github.event.pull_request.head.ref }}",
-                "token": "${{ secrets.GITHUB_TOKEN }}" }}"
+                "token": "${{ secrets.GITHUB_TOKEN }}"
               }
             }
             }
