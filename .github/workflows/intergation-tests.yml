@@ -26,7 +26,7 @@ jobs:
             prNumber=${{ github.event.pull_request.number }}
             tobranch=${{ github.event.pull_request.base.ref }}
             frombranch=${{ github.event.pull_request.head.ref }}
-            data= -c '{"event_type": "K8sCreateSecretReleasesPR", "client_payload": {"action": "CreateSecret", "commit": "$1", "repository":  "${{ github.repository }}", "prNumber": "${{ github.event.pull_request.number }}", "tobranch": "${{ github.event.pull_request.base.ref }}",  "frombranch": "${{ github.event.pull_request.head.ref }}" }}' --"$sha"
+            data= '{"event_type": "K8sCreateSecretReleasesPR", "client_payload": {"action": "CreateSecret", "commit": "$1", "repository":  "${{ github.repository }}", "prNumber": "${{ github.event.pull_request.number }}", "tobranch": "${{ github.event.pull_request.base.ref }}",  "frombranch": "${{ github.event.pull_request.head.ref }}" }}' --"$sha"
             response=$(curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data "$data")
             if [ "$response" == "" ]; then 
               echo "Integration tests triggered successfully"; 
