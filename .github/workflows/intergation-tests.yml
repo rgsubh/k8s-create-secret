@@ -19,10 +19,11 @@ jobs:
             echo "##[set-output name=branchname;]$(echo ${GITHUB_REF##*/})"
 
         - name: Trigger Test run
+          env:
+            sha: ${{ github.event.pull_request.head.sha }}
           if: github.event.pull_request.base.ref == 'releases/v1' || steps.extract_branch.outputs.branchname == 'releases/v1'
           run: |
-           $sha = github.event.pull_request.head.sha
-           $body = "{ `"event_type`": `"K8sCreateSecretReleasesPR`", `"client_payload`": {`"action`": `"CreateSecret`", `"commit`": `"$sha`", `"repository`":  `"${{ github.repository }}`", `"prNumber`": `"${{ github.event.pull_request.number }}`", `"tobranch`": `"${{ github.event.pull_request.base.ref }}`",  `"frombranch`": `"${{ github.event.pull_request.head.ref }}`", `"token`": `"${{ secrets.GITHUB_TOKEN }}`" }}"
+           $body = "{ `"event_type`": `"K8sCreateSecretReleasesPR`", `"client_payload`": {`"action`": `"CreateSecret`", `"commit`": `"${env:sha}`", `"repository`":  `"${{ github.repository }}`", `"prNumber`": `"${{ github.event.pull_request.number }}`", `"tobranch`": `"${{ github.event.pull_request.base.ref }}`",  `"frombranch`": `"${{ github.event.pull_request.head.ref }}`", `"token`": `"${{ secrets.GITHUB_TOKEN }}`" }}"
            response=$(curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data $body)
            if [ "$response" == "" ]; then 
             echo "Integration tests triggered successfully"; 
