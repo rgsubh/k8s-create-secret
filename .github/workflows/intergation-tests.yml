@@ -21,11 +21,11 @@ jobs:
         - name: Trigger Test run
           if: github.event.pull_request.base.ref == 'releases/v1' || steps.extract_branch.outputs.branchname == 'releases/v1'
           run: |
-            export sha=${{github.event.pull_request.head.sha}}
+            export sha="${{github.event.pull_request.head.sha}}"
             export repository=${{ github.repository }}
             export prNumber=${{ github.event.pull_request.number }}
             export tobranch=${{ github.event.pull_request.base.ref }}
-            export frombranch=${{ github.event.pull_request.head.ref }}
+            export frombranch="${{ github.event.pull_request.head.ref }}"
             $headers = @{
               "Authorization" = "token ${env:GITHUB_TOKEN}"
             }
