@@ -26,7 +26,10 @@ jobs:
             export prNumber=${{ github.event.pull_request.number }}
             export tobranch=${{ github.event.pull_request.base.ref }}
             export frombranch=${{ github.event.pull_request.head.ref }}
-            $test = @{
+            $headers = @{
+              "Authorization" = "token ${env:GITHUB_TOKEN}"
+            }
+            test=@{
               "event_type": "K8sCreateSecretReleasesPR", 
               "client_payload": {
                 "action": "CreateSecret", 
