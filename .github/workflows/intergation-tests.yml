@@ -26,8 +26,7 @@ jobs:
             export prNumber=${{ github.event.pull_request.number }}
             export tobranch=${{ github.event.pull_request.base.ref }}
             export frombranch=${{ github.event.pull_request.head.ref }}
-            echo ">> $sha"
-            response=$(curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data "(cat <<EOF
+            export test = "(cat <<EOF
             {
               "event_type": "K8sCreateSecretReleasesPR", 
               "client_payload": {
@@ -40,7 +39,9 @@ jobs:
               }
             }
             EOF
-            )")
+            )"
+            echo ">> $test"
+            response=$(curl -X POST -H "Authorization: token ${{ secrets.L2_REPO_TOKEN }}" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data )
             if [ "$response" == "" ]; then 
               echo "Integration tests triggered successfully"; 
             else 
