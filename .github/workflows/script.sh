@@ -23,7 +23,7 @@ EOF
 }
 
 getHeader() {
-    "Authorization: token $token"
+    Authorization: token $token
 }
 
 getURL() {
