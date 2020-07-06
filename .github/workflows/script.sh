@@ -22,16 +22,11 @@ getPayLoad() {
 EOF
 }
 
-getHeader(){
+getHeader() {
     cat <<EOF
     Authorization: token $token
 EOF
 }
-
-header="Authorization: token $token"
-echo ">> $header"
-echo "<><><> "$(getPayLoad)""
-echo ">>> "$(getHeader)""
 
 response=$(curl -H "$(getHeader)" -X POST "https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches" --data "$(getPayLoad)")
 
@@ -41,4 +36,3 @@ else
     echo "Triggering integration tests failed with: '$response'"
     exit 1
 fi
-
