@@ -28,7 +28,7 @@ getHeader() {
 EOF
 }
 
-response=$(curl -H "$(getHeader)" -X POST "https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches" --data "$(getPayLoad)")
+response=$(curl -H "$(getHeader)" -X POST "https://api.github.com/repos/Azure/azure-actions-integration-tests/dispatches" --data "$(getPayLoad)")
 
 if [ "$response" == "" ]; then
     echo "Integration tests triggered successfully"
