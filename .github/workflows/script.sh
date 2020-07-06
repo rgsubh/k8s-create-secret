@@ -28,7 +28,15 @@ getHeader() {
 EOF
 }
 
-response=$(curl -X POST -H "$(getHeader)" "https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches" --data "$(getPayLoad)")
+getURL() {
+    cat <<EOF
+    https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches
+EOF
+}
+
+URL=""
+
+response=$(curl -X POST -H "$(getHeader)" "$(getURL)" --data "$(getPayLoad)")
 
 if [ "$response" == "" ]; then
     echo "Integration tests triggered successfully"
