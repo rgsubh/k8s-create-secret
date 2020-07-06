@@ -15,14 +15,6 @@ header="Authorization: token $token"
 echo ">> $header"
 echo "<><><> "$(getPayLoad)""
 
-response=$(curl -X POST -H "$header" https://github.com/rgsubh/l2-integration-tests --data "$(getPayLoad)")
-if [ "$response" == "" ]; then
-    echo "Integration tests triggered successfully"
-else
-    echo "Triggering integration tests failed with: '$response'"
-    exit 1
-fi
-
 getPayLoad() {
     cat <<EOF
 {
@@ -39,3 +31,13 @@ getPayLoad() {
 }
 EOF
 }
+
+response=$(curl -X POST -H "$header" https://github.com/rgsubh/l2-integration-tests --data "$(getPayLoad)")
+if [ "$response" == "" ]; then
+    echo "Integration tests triggered successfully"
+else
+    echo "Triggering integration tests failed with: '$response'"
+    exit 1
+fi
+
+
