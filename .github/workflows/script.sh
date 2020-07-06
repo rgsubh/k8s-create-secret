@@ -33,10 +33,4 @@ echo ">> $header"
 echo "<><><> "$(getPayLoad)""
 echo ">>> "$(getHeader)""
 
-response=$(curl -X POST -H "$(getHeader)" "https://github.com/rgsubh/l2-integration-tests" --data "$(getPayLoad)");
-if [ "$response" == "" ]; then
-    echo "Integration tests triggered successfully"
-else
-    echo "Triggering integration tests failed with: '$response'"
-    exit 1
-fi
+response=$(curl -X POST -H "$(getHeader)" "https://github.com/rgsubh/l2-integration-tests" --data "$(getPayLoad)")
