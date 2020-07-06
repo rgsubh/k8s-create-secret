@@ -23,7 +23,7 @@ EOF
 }
 
 getHeader() {
-    Authorization: token $token
+    "Authorization: token $token"
 }
 
 getURL() {
@@ -32,7 +32,7 @@ getURL() {
 
 URL=""
 
-response=$(curl -X POST -H "$(getHeader)" "$(getURL)" --data "$(getPayLoad)")
+response=$(curl -X POST -H "Authorization: token $token" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data "$(getPayLoad)")
 
 if [ "$response" == "" ]; then
     echo "Integration tests triggered successfully"
