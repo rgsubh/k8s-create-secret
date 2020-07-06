@@ -22,7 +22,7 @@ getPayLoad() {
 EOF
 }
 
-getHeader(){
+getHeader() {
     cat <<EOF
     Authorization: token $token
 EOF
