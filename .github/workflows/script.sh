@@ -41,3 +41,4 @@ else
     echo "Triggering integration tests failed with: '$response'"
     exit 1
 fi
+
