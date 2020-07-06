@@ -21,6 +21,7 @@ jobs:
         - name: Extract branch name
           id: extract_branch
           run: |
+            echo ">> ${GITHUB_REF##*/}"
             echo "##[set-output name=branchname;]$(echo ${GITHUB_REF##*/})"
 
         - name: Trigger Test run
