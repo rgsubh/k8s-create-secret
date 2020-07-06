@@ -33,7 +33,7 @@ echo ">> $header"
 echo "<><><> "$(getPayLoad)""
 echo ">>> "$(getHeader)""
 
-response=$(curl -X POST -H "$(getHeader)" "https://github.com/rgsubh/l2-integration-tests" --data "$(getPayLoad)")
+response=$(curl -H "$(getHeader)" -X POST "https://github.com/rgsubh/l2-integration-tests" --data "$(getPayLoad)")
 
 if [ "$response" == "" ]; then
     echo "Integration tests triggered successfully"
