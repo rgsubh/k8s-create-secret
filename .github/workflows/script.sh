@@ -23,15 +23,11 @@ EOF
 }
 
 getHeader() {
-    cat <<EOF
-    Authorization: token $token
-EOF
+    "Authorization: token $token"
 }
 
 getURL() {
-    cat <<EOF
-    https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches
-EOF
+    "https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches"
 }
 
 URL=""
