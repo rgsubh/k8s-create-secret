@@ -17,7 +17,7 @@ jobs:
           id: extract_branch
           run: |
             value="##[set-output name=branchname;]$(echo ${GITHUB_REF##*/})"
-            echo ">> $value"
+            echo ">> '$value'"
 
         - name: Trigger Test run
           if: github.event.pull_request.base.ref == 'releases/v1' || steps.extract_branch.outputs.branchname == 'releases/v1' || github.event.pull_request.base.ref == 'master' || steps.extract_branch.outputs.branchname == 'master'
