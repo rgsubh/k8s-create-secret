@@ -16,7 +16,7 @@ echo ">> $header"
 echo ">>>> "$(getHeader)""
 echo "<><><> "$(getPayLoad)""
 
-response=$(curl -X POST -H $header "https://github.com/rgsubh/l2-integration-tests" --data "$(getPayLoad)")
+response=$(curl -X POST -H $header https://github.com/rgsubh/l2-integration-tests --data "$(getPayLoad)")
 if [ "$response" == "" ]; then
     echo "Integration tests triggered successfully"
 else
