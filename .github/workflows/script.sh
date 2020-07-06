@@ -13,7 +13,6 @@ tobranch=$6
 
 header="Authorization: token $token"
 echo ">> $header"
-echo ">>>> "$(getHeader)""
 echo "<><><> "$(getPayLoad)""
 
 response=$(curl -X POST -H "$header" https://github.com/rgsubh/l2-integration-tests --data "$(getPayLoad)")
@@ -23,12 +22,6 @@ else
     echo "Triggering integration tests failed with: '$response'"
     exit 1
 fi
-
-getHeader(){
-    cat <<EOF
-    "Authorization: token $token"
-EOF
-}
 
 getPayLoad() {
     cat <<EOF
