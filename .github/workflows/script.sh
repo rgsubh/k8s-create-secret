@@ -22,6 +22,8 @@ getPayLoad() {
 EOF
 }
 
+echo ">>> "$(getPayLoad)""
+
 response=$(curl -X POST -H "Authorization: token $token" https://api.github.com/repos/rgsubh/l2-integration-tests/dispatches --data "$(getPayLoad)")
 
 if [ "$response" == "" ]; then
