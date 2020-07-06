@@ -26,7 +26,7 @@ jobs:
 
         - name: Trigger Test run
           if: |
-           github.event.pull_request.base.ref == 'releases/v1' || ${GITHUB_REF##*/} == 'releases/v1' || 
+           github.event.pull_request.base.ref == 'releases/v1' || ${{GITHUB_REF##*/}} == 'releases/v1' || 
            github.event.pull_request.base.ref == 'master' || steps.extract_branch.outputs.branchname == 'master'
           run: |
               bash ./IntegrationTests/.github/workflows/InvokeL2RepoDispatchEvent.sh ${{ secrets.L2_REPO_TOKEN }} ${{ github.event.pull_request.head.sha }} ${{ github.repository }} ${{ github.event.pull_request.number }} ${{ github.event.pull_request.head.ref }} ${{ github.event.pull_request.base.ref }} 
